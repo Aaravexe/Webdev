@@ -1,4 +1,6 @@
 node_modules/
 .env
+postman/.postman/
+postman/postman/
 coverage/
 npm-debug.log*
