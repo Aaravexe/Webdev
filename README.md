@@ -1,58 +1,33 @@
-# Backend Tutorial: Node, Express, MongoDB
+# Intro to Backend Development
 
-A beginner-friendly REST API that follows the tutorial architecture: **models → controllers → routes**. It includes user registration/login with password hashing and JWTs, plus protected CRUD operations for posts.
+This repository follows the freeCodeCamp **Intro to Backend Development** tutorial: Node.js, Express, MongoDB/Mongoose, models, controllers, routes, user registration/login/logout, and CRUD APIs for posts.
 
-## What is included
+## Setup
 
-- Node.js + Express project setup
-- MongoDB Atlas connection through Mongoose
-- `User` and `Post` database models
-- Authentication APIs: register, login, and current-user profile
-- Full CRUD APIs for posts
-- A ready-to-import Postman collection
-- Environment variables kept out of Git
+1. Install Node.js LTS and run `npm install`.
+2. Create a free MongoDB Atlas cluster, a database user, and a Network Access rule for your current IP.
+3. Copy `.env.example` to `.env` and replace `MONGODB_URI` with your Atlas Node.js connection string.
+4. Start the server with `npm run dev`.
 
-## Step-by-step setup
+The server runs at `http://localhost:4000` by default.
 
-1. Install [Node.js LTS](https://nodejs.org/), then run `npm install` in this folder.
-2. Create a free MongoDB Atlas cluster. In Atlas, create a database user, allow your current IP address under **Network Access**, then copy the Node.js connection string.
-3. Copy `.env.example` to a new file named `.env`. Replace the placeholder `MONGODB_URI` and set a long random `JWT_SECRET`.
-4. Start the server with `npm run dev` (or `npm start`).
-5. Open `http://localhost:5000/api/v1/health`. You should receive `{ "message": "API is healthy." }`.
+## Routes
 
-## API routes
+| Method | URL | Purpose |
+| --- | --- | --- |
+| POST | `/api/v1/users/register` | Register a user |
+| POST | `/api/v1/users/login` | Log in a user |
+| POST | `/api/v1/users/logout` | Log out a user |
+| POST | `/api/v1/posts/create` | Create a post |
+| GET | `/api/v1/posts/getPosts` | Read all posts |
+| PATCH | `/api/v1/posts/update/:id` | Update a post |
+| DELETE | `/api/v1/posts/delete/:id` | Delete a post |
 
-| Method | Endpoint | Purpose | Login required |
-| --- | --- | --- | --- |
-| GET | `/api/v1/health` | Health check | No |
-| POST | `/api/v1/auth/register` | Create an account | No |
-| POST | `/api/v1/auth/login` | Sign in and receive a JWT | No |
-| GET | `/api/v1/auth/me` | Read current user | Yes |
-| POST | `/api/v1/posts` | Create a post | Yes |
-| GET | `/api/v1/posts` | Read all posts | No |
-| GET | `/api/v1/posts/:id` | Read one post | No |
-| PATCH | `/api/v1/posts/:id` | Update your post | Yes |
-| DELETE | `/api/v1/posts/:id` | Delete your post | Yes |
-
-## Testing in Postman
+## Postman test order
 
 1. Import `postman/Backend-Tutorial-CRUD.postman_collection.json`.
-2. Send **Register** or **Login**, then copy `token` from the response into the collection variable named `token`.
-3. Send **Create Post**, and copy the returned post `_id` into `postId`.
-4. Use **Get Posts**, **Update Post**, and **Delete Post** to demonstrate the complete CRUD cycle.
+2. Register and log in with the sample body.
+3. Create a post, then copy its `_id` from the response into the Postman `postId` collection variable.
+4. Get, update, and delete that post.
 
-## Suggested evaluation demo
-
-Show the `.env` file (without revealing the secret), `npm run dev`, the successful health endpoint, then run Postman requests in this order: Register → Login → Create → Get → Update → Delete. Point out how route files delegate to controller functions, and how controller functions use Mongoose models.
-
-## Publish to GitHub
-
-After reviewing the files, commit and push from this folder:
-
-```powershell
-git add .
-git commit -m "Build Node Express MongoDB CRUD API"
-git push -u origin main
-```
-
-Never commit `.env`; `.gitignore` already protects it.
+Do not commit `.env`; it is ignored by Git.

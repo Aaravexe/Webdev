@@ -1,24 +1,21 @@
 {
-  "name": "webdev-backend-tutorial",
+  "name": "intro-to-backend",
   "version": "1.0.0",
-  "description": "Node.js, Express, MongoDB, authentication, and CRUD APIs",
-  "main": "src/server.js",
+  "description": "A tutorial for intro to backend",
+  "main": "backend/src/index.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon src/server.js",
-    "start": "node src/server.js",
-    "test": "node --test"
+    "dev": "nodemon backend/src/index.js",
+    "start": "node backend/src/index.js"
   },
   "keywords": ["node", "express", "mongodb", "crud", "backend"],
   "license": "MIT",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.9.5"
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.3",
+    "nodemon": "^3.1.10"
   },
-  "devDependencies": {
-    "nodemon": "^3.1.9"
-  }
+  "devDependencies": {}
 }
